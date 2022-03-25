@@ -1,0 +1,20 @@
+<header>
+    <h1 id="nav-title">boomusic</h1>
+    <nav>
+        <ul>
+            <li><% if (user) { %>
+                <li><%= user.nome %>
+                </li>
+                <% } %></li>
+            <% if (user.adm) { %>
+                <li><a href="/musicas">Músicas</a></li>
+                <li><a href="/login.html">Sair</a></li>
+                <% } else{ %>
+                    <li><a href="/musicas">Músicas</a></li>
+                    <li><a href="/login.html">Sair</a></li>
+                    <li><a href="/musicas/cadastrar">Adicionar música</a></li>
+                                <% } %>
+
+        </ul>
+    </nav>
+</header>

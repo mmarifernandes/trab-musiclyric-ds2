@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<%- include('includes/head') %>
+
+<body>
+
+    <%- include('includes/navbar') %>    
+
+    <h1>Música <%= musica.titulo %></h1>
+    <h2>Genero <%= musica.genero %></h2>
+    
+    <h3>Lançado em: <%= musica.lancamento %></h3>
+
+    <p><%= musica.sinopse %></p>
+
+    <a href="/musicas/alterar/<%= musica.id %>">ALTERAR</a>
+    <br/><br/>
+    <a href="/musicas/deletar/<%= musica.id %>">DELETAR</a>
+</body>
+</html>

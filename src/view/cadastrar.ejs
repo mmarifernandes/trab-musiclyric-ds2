@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<%- include('includes/head') %>
+
+<body>
+
+    <h1>Cadastrar Música</h1>
+
+    <form action="/musicas" method="POST">
+        <label for="titulo">Título</label>
+        <input type="text" name="titulo">
+        <br /><br />
+
+        <label for="genero">Genero</label>
+        <input type="text" name="genero">
+        <br /><br />
+
+        <label for="letra">Letra</label>
+        <input type="text" name="letra">
+        <br /><br />
+
+        <label for="album">Albúm</label>
+        <input type="text" name="album">
+        <br /><br />
+        
+        <label for="lancamento">Lançado em</label>
+        <input type="date" name="lancamento">
+        <br /><br />
+
+        <label for="artista">Artista(s)</label>
+        <input type="text" name="artista">
+        <br /><br />
+
+        <input type="submit" value="CADASTRAR">
+        <br /><br />        
+        
+        <!-- <input type="hidden" name="user" value=""> -->
+    </form>
+
+    <!-- <footer>
+        <p>Desenvolvido nas aulas do IFRS <3</p>
+    </footer> -->
+
+</body>
+</html>
