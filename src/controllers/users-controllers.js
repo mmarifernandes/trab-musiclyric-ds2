@@ -3,13 +3,17 @@ const users = [];
 class UsersController {
     async cadastrar(req, res) {
         console.log('UsersController/cadastrar');
-
+        if (req.body.nome == '' || req.body.email == '' || req.body.senha == '') {
+            return res.send('Você precisa preencher todos os campos...');
+        }
         const user = req.body;
         users.push(user);  // salvando no banco
 
         console.log({ users });
-        res.redirect('/login.html');
-    }
+        req.session.user = user;
+
+        res.redirect('/musicas');
+    } 
 
     async login(req, res) {
         // ACHAR COM O EMAIL CERTO
@@ -25,7 +29,7 @@ class UsersController {
         } else {
             return res.send('Senha nao confere...');
         }
-        
+
     }
 }
 

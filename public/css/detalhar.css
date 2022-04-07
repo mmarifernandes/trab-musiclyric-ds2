@@ -1,0 +1,49 @@
+.vl {
+    border-left: 6px solid rgb(170, 170, 170);
+    height: 50px;
+    padding-left: 15px;
+}
+
+h2{
+    word-break: break-all;
+    padding: 0;
+    text-align: left;
+    margin-bottom: 0;
+}
+h1{
+    text-align: left;
+    margin: 0
+}
+.head{
+    margin: 0;
+    display: inline;
+}
+
+section{
+    margin-left: 15%;
+        margin-right: 15%;
+
+}
+.lyric {
+        margin-top: 10%;
+
+    width: 50%;
+    float: left;
+}
+
+.video {
+    margin-top: 18%;
+    width: 50%;
+    float: left;
+    border: 2px;
+}
+p{
+    line-height: 1.6em;
+    font-size: 17px;
+    margin: 0;
+    margin-bottom: 100px;
+}
+iframe {
+    border: 2px rgb(0, 195, 255) solid;
+    border-radius: 15px;
+}

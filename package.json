@@ -1,12 +1,14 @@
 {
-  "name": "catalogo-filmes",
+  "name": "boomusic",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon src/index.js"
+    "dev": "nodemon src/index.js",
+    "node": "node src/index.js"
+
   },
-  "author": "Vini",
+  "author": "Marina",
   "license": "ISC",
   "dependencies": {
     "ejs": "^3.1.6",

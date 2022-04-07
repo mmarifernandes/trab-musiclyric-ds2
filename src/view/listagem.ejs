@@ -3,156 +3,177 @@
 
 <%- include('includes/head') %>
 
-<body>
+  <body>
 
-    <%- include('includes/navbar') %>    
-
-
-
-    <div>
-
-<div class="menu">
-  <% if (user.adm) { %>
-
-    <table class="musicas2">
-      <h1 id="titulo2">Músicas aguardadando aprovação</h1>
-      <tr>
-        <th>Nome</th>
-        <th>Artista</th>
-        <th>Gênero</th>
-        <th>Lançamento</th>
-        <th>Letra</th>
-
-      </tr>
-      <% aprovarmusicas.forEach(cmusica=> { %>
-        <tr>
-          <td>
-            <%= cmusica.titulo %>
-          </td>
-          <td>
-            <%= cmusica.artista %>
-          </td>
-          <td>
-            <%= cmusica.genero %>
-          </td>
-          <td>
-            <%= cmusica.lancamento %>
-          </td>
-          <td>
-            <%= cmusica.letra %>
-          </td>
+    <%- include('includes/navbar') %>
 
 
+      <scroll-container>
 
-        </tr>
-        <% }) %>
-    </table>
+        <div class="scroll">
+
+          <div class="menu">
+
+            <% if (user.tipo == 'adm') { %>
+
+              <table class="musicas2">
+                <h1 id="titulo2">Aguardadando aprovação</h1>
+                <% if (aprovarmusicas.length !==0) { %>
+                  <tr>
+                    <th>Nome</th>
+                    <th>Artista</th>
+                    <th>Gênero</th>
+                    <th>Lançamento</th>
+
+                  </tr>
+                  <% aprovarmusicas.forEach(cmusica=> { %>
+                    <tr>
+                      <td>
+                        <%= cmusica.titulo %>
+                      </td>
+                      <td>
+                        <%= cmusica.artista %>
+                      </td>
+                      <td>
+                        <%= cmusica.genero %>
+                      </td>
+                      <td width="22%">
+                        <%= cmusica.lancamento.substring(8, 10) + '/' +cmusica.lancamento.substring(5, 7) + '/' +cmusica.lancamento.substring(2,
+                          4)%>
+                      </td>
+                      <td>
+                        <a href="/musicas/aprova/<%= cmusica.id %>"><img src="/images/aprovado.png"  style="height: 20px; width: 20px" alt=""></a>
+                      </td>
+                      <td>
+                        <a href="/musicas/naoaprova/<%= cmusica.id %>"><img src="/images/reprovado.png" style="height: 20px; width: 20px" alt=""></a>
+                      </td>
+
+
+
+                    </tr>
+                    <% }) %>
+                      <% } else {%>
+                        <h7 class="texto">Nada para aprovar</h7>
+                        <% } %>
+              </table>
+              <% } %>
+
+
+                <% if (user.tipo == 'padrao') { %>
+
+                  <table class="musicas2">
+                    <h1 id="titulo2">Favoritas</h1>
+                <% if (favoritas.length !==0) { %>
+
+                    <% favoritas.forEach(cmusica=> { %>
+                      <% if(cmusica.userlike==user.email){ %>
+                        <tr>
+                          <td style="padding: 15px" width="30%">
+                            <%= cmusica.musicas.titulo %>
+                          </td>
+                          <td style="padding: 15px" width="12%">
+                            <%= cmusica.musicas.artista %>
+                          </td>
+                        </tr>
+                        <% } %>
+
+                          <% }) %>
+  <% } else {%>
+    <h7 class="texto">Você não favoritou nada ainda :(</h7>
     <% } %>
-    <table class="musicas2">
-      <h1 id="titulo2">Favoritas</h1>
-      <tr>
-        <th>Nome</th>
-        <th>Artista</th>
-        <th>Gênero</th>
-        <th>Lançamento</th>
-        <th>Letra</th>
-    
-      </tr>
-      <% aprovarmusicas.forEach(cmusica=> { %>
-        <tr>
-          <td>
-            <%= cmusica.titulo %>
-          </td>
-          <td>
-            <%= cmusica.artista %>
-          </td>
-          <td>
-            <%= cmusica.genero %>
-          </td>
-          <td>
-            <%= cmusica.lancamento %>
-          </td>
-          <td>
-            <%= cmusica.letra %>
-          </td>
-    
-    
-    
-        </tr>
-        <% }) %>
-    </table>
+                  </table>
+                  <% } %>
 
 
-</div>
+          </div>
 
-    <div class="main">
+          <div class="main">
 
 
-          <h1 id="titulo">Músicas recentes</h1>
-          
-          <table class="musicas">
-            <tr>
-              <th>Nome</th>
-              <th>Artista</th>
-              <th>Gênero</th>
-              <th>Lançamento</th>
-              <th>Letra</th>
-            </tr>
-            <tr>
-              <td>Heart Attack</td>
-              <td>Demi Lovato</td>
-              <td>Pop</td>
-              <td>2022-03-04</td>
-              <td>lalalalal</td>
-          
-            </tr>
-              <tr>
-                <td>Give Your Heart A Break</td>
-                <td>Demi Lovato</td>
-                <td>Pop</td>
-                <td>2010-03-04</td>
-                <td>there's just one life to live</td>
-              </tr>
-              <tr>
-                <td>the 1</td>
-                <td>Taylor Swift</td>
-                <td>Indie Pop</td>
-                <td>2020-03-04</td>
-                <td>in my defense i have none, for never leaving well enough alone</td>
-              
-              </tr>
-            <% musicas.forEach(musica=> { %>
-              <tr>
-                <td>
-                  <%= musica.titulo %>
-                </td>
-                <td>
-                  <%= musica.artista %>
-                </td>
-                <td>
-                  <%= musica.genero %>
-                </td>
-                <td>
-                  <%= musica.lancamento %>
-                </td>
-                <td>
-                  <%= musica.letra %>
-                </td>
-          
-          
-                <td> <a href="/musicas/<%= musica.id %>"> Ver detalhes </a> </td>
-              </tr>
-              <% }) %>
-          </table>
+            <h1 id="titulo">Músicas adicionadas</h1>
+
+            <table class="musicas">
+              <div style="margin-left: 7.8%; margin-bottom: 5px; font-weight: bold; font-size: 13px;">
+                <p style="margin-bottom: 1px; margin: 1px;">A-Z</p>
+                <a href="/musicas/titulocresc"><img src="/images/up.png" alt=""></a>
+                <a href="/musicas/titulodecresc"><img src="/images/down.png" alt="" style=" margin-right: 5px;"></a>
+
+                <p style="margin-bottom: 1px; margin: 1px;">Data</p>
+                <a href="/musicas/datacresc"><img src="/images/up.png" alt=""></a>
+                <a href="/musicas/datadecresc"><img src="/images/down.png" alt=""></a>
+              </div>
+
+              <% let i=1; %>
+
+                <% musicas.forEach(musica=> { %>
+                  <tr class="change">
+
+                    <td class="t">
+                      <%= i++ %>
+                    </td>
+                    <td width="12.5%">
+                      <%= musica.titulo %>
+                    </td>
+                    <td width="12.5%">
+                      <%= musica.artista %>
+                    </td>
+                    <td width="14.5%">
+                      <%= musica.genero %>
+                    </td>
+                    <td width="15%">
+                      <%= musica.lancamento.substring(8, 10) + '/' +musica.lancamento.substring(5, 7) + '/'
+                        +musica.lancamento.substring(2, 4)%>
+                    </td>
+                    <td width="18%">
+                      <%= musica.letra.substring(0, 20) +"..." %>
+                    </td>
+                    <td>
+                      <a href="/musicas/detalhar/<%= musica.id %>"><img src="/images/more.png"
+                          style="height: 30px; width: 30px" alt=""></a>
+                    </td>
+                    <% if (user.tipo == 'adm') { %>
+                      <td>
+                        <a href="/musicas/alterar/<%= musica.id %>"><img src="/images/edit.png"
+                            style="height: 25px; width: 25px" alt=""></a>
+                      </td>
+
+                      <td>
+                        <a href="/musicas/deletar/<%= musica.id %>"><img src="/images/X.png"
+                            style="height: 25px; width: 25px" alt=""></a>
+                      </td>
+                      <% } %>
+                        <% if (user.tipo == 'padrao') { %>
+                    
+
+                          <td>
+                            <a href="/musicas/favoritar/<%= musica.id %>"">
+                      <img src=" /images/heart.png" style="height: 25px; width: 25px" id="imgClickAndChange"
+                              onclick="changeImage(this)" />
+                            </a>
+                          </td>
+                          <% } %>
+
+                  </tr>
+                  <% }) %>
+            </table>
+          </div>
         </div>
+      </scroll-container>
 
-      
-    </div>
+  </body>
+  <script>
 
-    
-   
+    function changeImage(t) {
+      if (state == "like") {
 
-     
-</body>
+        return t.src = "/images/heartfull.png", state = "liked";
+      }
+      if (state == "liked") {
+        return t.src = "/images/heart.png", state = "like"
+
+      }
+      console.log(state);
+    }
+  </script>
 
 </html>

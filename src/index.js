@@ -38,8 +38,11 @@ app.use('*', (req, res, next) => {
 })
 
 app.get('/', (req, res) => {
-    res.redirect('/musicas');
+    res.redirect('/login.html');
 });
+
+app.use(express.static('public'));
+app.use('/images', express.static('images'));
 
 const musicasRoutes = require('./routes/musicas-routes');
 app.use('/musicas', musicasRoutes);
