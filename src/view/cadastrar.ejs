@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <%- include('includes/head') %>
 
     <head>
@@ -10,54 +11,55 @@
 
     </head>
 
+
     <body>
 
         <%- include('includes/navbar') %>
+            <div class="header2" style="font-size: 15px;">
 
-            <div class="header2">
-            <h1>Cadastrar Música</h1>
-        </div>
+                <h1>Cadastrar Música</h1>
+            </div>
+
             <form action="/musicas" class="form-inline" method="POST">
                 <div class="form-row">
                     <div class="container">
+
+
                         <label for="letra" style="float: right;">Letra</label>
                         <br>
-                        <textarea name="letra" style="float: right;" cols="30" rows="15" required></textarea>
-
+                        <textarea name="letra" cols="30" rows="15" style="float: right;"
+                            required></textarea>
+                        <br>
                         <label for="titulo">Título</label>
                         <br>
                         <input type="text" name="titulo" required>
+                        <br>
                         <label for="genero">Genero</label>
                         <br>
                         <input type="text" name="genero" required>
                         <br>
                         <label for="album">Albúm</label>
                         <br>
-
-                        
                         <input type="text" name="album" required>
                         <br>
                         <label for="lancamento">Lançado em</label>
                         <br>
-                        
                         <input type="date" name="lancamento" required>
                         <br>
                         <label for="artista">Artista(s)</label>
                         <br>
-                        <input type="text" name="artista" required>
+                        <input type="text" name="artista"  required>
                         <br>
                         <label for="artista">URL do vídeo</label>
                         <br>
                         <input type="text" name="url" required>
-                    <br>
-                        <br>
-                        <input type="submit" style="background-color: #1F2739;" value="CADASTRAR">
+                        <br><br>
+                        <input type="submit" value="Cadastrar">
                     </div>
                 </div>
             </form>
-            <!-- <footer>
-        <p>Desenvolvido nas aulas do IFRS <3</p>
-    </footer> -->
+
+
 
     </body>
 

@@ -56,5 +56,6 @@ app.use('*', (req, res) => {
         <a href="/musicas">VOLTAR</a>
     `);
 })
+const PORT = process.env.PORT || 3000;
 
-app.listen(3000, () => console.log('Server iniciado na porta 3000'));
+app.listen(PORT, () => console.log(`Server iniciado na porta ${PORT}`));
