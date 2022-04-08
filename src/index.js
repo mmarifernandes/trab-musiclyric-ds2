@@ -5,18 +5,16 @@ const app = express();
 app.set('view engine', 'ejs');
 app.set('views', './src/view');
 
-// PARSER DOS FORMULÁRIOS
 app.use(express.urlencoded({
     extended: true,
 }));
 
-// PARSER DAS REQUISIÇOES COM JSON
 app.use(express.json());
 
 const session = require('express-session');
 app.use(session({
     secret: 'chave secreta de criptografia',
-    resave: false, // NAO SOBRESCREVER CASO NAO HAJA MODIFICAÇÕES,
+    resave: false,
     saveUninitialized: false,
     cookie: { secure: false }
 }))
@@ -24,11 +22,6 @@ app.use(session({
 
 app.use(express.static('public'));
 
-/* 
-SEMPRE QUE UTILIZAMOS APP.USE ESTAMOS INCLUINDO UM MIDDLEWARE !!!
-
-MIDDLEWARE É UMA FUNÇÃO QUE EXECUTA ENTRE O REQUEST E O ENDPOINT FINAL, PERMITINDO QUE SEJA VERIFICADO, INCLUIDO, TESTADO, QUALQUER CÓDIGO, ANTES DE "PASSAR PARA FRENTE" NEXT() FUNCTION
-*/
 app.use('*', (req, res, next) => {
     console.log(`Request recebido para ${req.baseUrl} as ${new Date()}`);
 
