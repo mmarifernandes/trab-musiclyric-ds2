@@ -2,22 +2,22 @@
     <h1 id="nav-title" onclick="window.location='/musicas'">boomusic</h1>
     <nav class="navbar">
         <ul>
-            <li>
-                <a href="#abrirModal"><%= user.nome %></a>
-
-                <div id="abrirModal" class="modal">
-                  <a href="#fechar" title="Fechar" class="fechar" style="font-size: 30px;">X</a>
-                  <h2 style="text-align: center;">Meu Perfil</h2>
-                  <h1 style="margin-bottom: 5px; text-align: center;"><%= user.nome %></h1>
-                  <h1 style="font-size: 20px; color: aliceblue; text-align: center;"><%= user.email %></h1>
-                </div>
-            </li>
             <li><a href="/musicas">Músicas</a></li>
             <% if(user.tipo == 'padrao'){ %>
                 <li><a href="/musicas/cadastrar">Sugerir música</a></li>
                 <% }else{ %>
                     <li><a href="/musicas/cadastrar">Adicionar música</a></li>
                     <% } %>
+                    <li>
+                        <a href="#abrirModal"><%= user.nome %></a>
+        
+                        <div id="abrirModal" class="modal">
+                          <a href="#fechar" title="Fechar" class="fechar" style="font-size: 30px;">X</a>
+                          <h2 style="text-align: center;">Meu Perfil</h2>
+                          <h1 style="margin-bottom: 5px; text-align: center;"><%= user.nome %></h1>
+                          <h1 style="font-size: 20px; color: aliceblue; text-align: center;"><%= user.email %></h1>
+                        </div>
+                    </li>
                         <li><a href="/login.html">Sair</a></li>
         </ul>
     </nav>
