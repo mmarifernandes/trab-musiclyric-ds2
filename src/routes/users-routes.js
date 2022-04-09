@@ -5,7 +5,11 @@ const routes = Router();
 
 const usersController = new UsersController();
 
-routes.post('/cadastrar', usersController.cadastrar);
+routes.get('/cadastrouser', usersController.mostraCadastro);
+ 
+routes.post('/cadastrouser', usersController.cadastrar);
+
+routes.get('/login', usersController.mostraLogin);
 
 routes.post('/login', usersController.login);
 

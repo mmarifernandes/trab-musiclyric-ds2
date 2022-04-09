@@ -51,23 +51,27 @@ let musicas = [{
 }];
 let aprovarmusicas = [];
 let favoritas = [];
-const { nanoid } = require('nanoid');
+const {
+    nanoid
+} = require('nanoid');
 
 class MusicasController {
 
     async mostraCadastro(req, res) {
-        return res.render('cadastrar', { user: req.session.user, });
+        return res.render('cadastrar', {
+            user: req.session.user,
+        });
     }
 
     async listar(req, res) {
-        console.log('PAGINA INICIAL');
-        console.log({
-            aprovarmusicas
-        });
-        console.log("SESSION")
-        console.log({ session: req.session.user });
+
         if (req.session.user !== undefined) {
-            return res.render('listagem', { user: req.session.user, musicas: musicas, aprovarmusicas: aprovarmusicas, favoritas: favoritas });
+            return res.render('listagem', {
+                user: req.session.user,
+                musicas: musicas,
+                aprovarmusicas: aprovarmusicas,
+                favoritas: favoritas
+            });
         } else {
             return res.send('Você precisa estar logado para ver está página');
         }
@@ -75,14 +79,22 @@ class MusicasController {
 
 
     async mostraAlterar(req, res) {
-        const { id } = req.params;
+        const {
+            id
+        } = req.params;
         const musicaFiltrado = musicas.filter(f => f.id == id);
-        return res.render('alterar', { user: req.session.user, musica: musicaFiltrado[0], musicas: musicas });
+        return res.render('alterar', {
+            user: req.session.user,
+            musica: musicaFiltrado[0],
+            musicas: musicas
+        });
 
     }
 
     async alterar(req, res) {
-        const { id } = req.params;
+        const {
+            id
+        } = req.params;
 
         const musicaFiltrado = musicas.filter(f => f.id == id);
         musicas.splice(musicas.indexOf(musicaFiltrado[0]), 1);
@@ -93,7 +105,6 @@ class MusicasController {
             id: id,
             ...req.body
         });
-        console.log(musicas);
         return res.redirect('/musicas');
     }
 
@@ -123,8 +134,6 @@ class MusicasController {
                 return -1;
 
         });
-        console.log(musicas)
-
         return res.redirect('/musicas')
     }
 
@@ -135,12 +144,13 @@ class MusicasController {
             if (tituloA > tituloB)
                 return -1;
         });
-        console.log(musicas)
         return res.redirect('/musicas')
     }
 
     async deletar(req, res) {
-        const { id } = req.params;
+        const {
+            id
+        } = req.params;
         console.log("Aaaaa");
         const musicaIdx = musicas.findIndex(f => f.id == id);
         musicas.splice(musicaIdx, 1);
@@ -148,10 +158,15 @@ class MusicasController {
     }
 
     async detalhar(req, res) {
-        const { id } = req.params;
+        const {
+            id
+        } = req.params;
         const musicaFiltrado = musicas.filter(f => f.id == id);
         if (musicaFiltrado.length > 0) {
-            return res.render('detalhar', { user: req.session.user, musica: musicaFiltrado[0] });
+            return res.render('detalhar', {
+                user: req.session.user,
+                musica: musicaFiltrado[0]
+            });
         } else {
             return res.send('MÚSICA NÃO ENCONTRADA');
         }
@@ -159,8 +174,6 @@ class MusicasController {
 
 
     async cadastrar(req, res) {
-        console.log(`Aguardando aprovação`);
-        console.log({ body: req.body });
         aprovarmusicas.push({
             user: req.session.user.email,
             status: 'like',
@@ -171,8 +184,9 @@ class MusicasController {
     }
 
     async aprova(req, res) {
-        console.log(`AQUI`);
-        const { id } = req.params;
+        const {
+            id
+        } = req.params;
         const musicaFiltrado = aprovarmusicas.filter(f => f.id == id);
         if (musicaFiltrado.length > 0) {
             aprovarmusicas.splice(aprovarmusicas.indexOf(musicaFiltrado[0]), 1);
@@ -184,7 +198,9 @@ class MusicasController {
     }
 
     async naoaprova(req, res) {
-        const { id } = req.params;
+        const {
+            id
+        } = req.params;
         const musicaFiltrado = aprovarmusicas.filter(f => f.id == id);
         if (musicaFiltrado.length > 0) {
             aprovarmusicas.splice(aprovarmusicas.indexOf(musicaFiltrado[0]), 1);
@@ -193,28 +209,32 @@ class MusicasController {
     }
 
     async favoritar(req, res) {
-        const { id } = req.params;
+        const {
+            id
+        } = req.params;
         const musicaFiltrado = musicas.filter(f => f.id == id);
         const favFiltrado = favoritas.filter(f => f.musicas.id == id && f.userlike == req.session.user.email);
         if (favFiltrado[0]) {
             console.log("ERRO");
             favoritas.splice(favoritas.indexOf(favFiltrado[0]), 1);
- 
 
-        }
-        else {
-            console.log('CERTO')
-            favoritas.push({ musicas: musicaFiltrado[0], userlike: req.session.user.email});
-            for (let i = 0; i<favoritas.length; i++) {
+
+        } else {
+            favoritas.push({
+                musicas: musicaFiltrado[0],
+                userlike: req.session.user.email
+            });
+            for (let i = 0; i < favoritas.length; i++) {
                 if (favoritas[i].musicas.id == id) {
                     favoritas[i].musicas.status = 'liked';
                     break;
                 }
             }
         }
-        console.log(favoritas);
         return res.redirect('/musicas');
     }
 }
 
-module.exports = { MusicasController }
+module.exports = {
+    MusicasController
+}

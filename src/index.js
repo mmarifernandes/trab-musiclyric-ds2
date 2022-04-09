@@ -24,14 +24,11 @@ app.use(express.static('public'));
 
 app.use('*', (req, res, next) => {
     console.log(`Request recebido para ${req.baseUrl} as ${new Date()}`);
-
-    // atrasando o usuario kkkkk
-    // setTimeout(() => next(), 1000);
     next();
 })
 
 app.get('/', (req, res) => {
-    res.redirect('/login.html');
+    res.redirect('/users/login');
 });
 
 app.use(express.static('public'));
