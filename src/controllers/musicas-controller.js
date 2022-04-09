@@ -1,8 +1,8 @@
 let musicas = [{
     user: 'marinafernandess103@gmail.com',
     id: 'wJhUGr7g',
-    titulo: 'the 1',
-    genero: 'Country, Pop',
+    titulo: 'illicit affairs',
+    genero: 'Alternativa, Indie',
     letra: 'Make sure nobody sees you leave\r\n' +
         'Hood over your head, keep your eyes down\r\n' +
         "Tell your friends you're out for a run\r\n" +
@@ -45,9 +45,9 @@ let musicas = [{
         'A million little times',
     album: 'folklore',
     status: 'like',
-    lancamento: '2022-03-28',
+    lancamento: '2020-03-28',
     artista: 'Taylor Swift',
-    url: 'https://youtu.be/vv3um0BlygY'
+    url: 'https://youtu.be/MLV2SJKWk4M'
 }];
 let aprovarmusicas = [];
 let favoritas = [];
